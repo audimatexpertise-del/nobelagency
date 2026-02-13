@@ -1,0 +1,1518 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nobel — Agence Digitale pour Diagnostiqueurs Immobiliers</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --nobel-cyan: #0AC1D7;
+  --nobel-green: #20DE83;
+  --nobel-navy: #14264C;
+  --gradient-primary: linear-gradient(135deg, #0AC1D7 0%, #20DE83 100%);
+  --gradient-secondary: linear-gradient(135deg, #14264C 0%, #0AC1D7 100%);
+  --gradient-accent: linear-gradient(90deg, #0AC1D7 0%, #20DE83 50%, #0AC1D7 100%);
+  --white: #ffffff;
+  --light-bg: #f8fafb;
+  --text-dark: #14264C;
+  --text-gray: #6b7280;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Poppins', sans-serif;
+  color: var(--text-dark);
+  overflow-x: hidden;
+  background: var(--white);
+}
+
+/* Animated gradient background */
+.hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(135deg, #0AC1D7 0%, #20DE83 50%, #14264C 100%);
+  background-size: 200% 200%;
+  animation: gradientShift 8s ease infinite;
+  z-index: -1;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Floating particles */
+.particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  animation: float 15s infinite ease-in-out;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-100vh) translateX(50px); opacity: 0; }
+}
+
+/* Header */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem 5%;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+  animation: slideDown 0.6s ease-out;
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+nav {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-wave {
+  width: 50px;
+  height: 50px;
+  background: var(--gradient-primary);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.logo-wave svg {
+  width: 32px;
+  height: 32px;
+  fill: white;
+}
+
+.logo-text {
+  font-size: 28px;
+  font-weight: 700;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+  align-items: center;
+}
+
+.nav-links a {
+  color: var(--text-dark);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 15px;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--gradient-primary);
+  transition: width 0.3s;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.cta-button {
+  padding: 12px 30px;
+  background: var(--gradient-primary);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 15px rgba(10, 193, 215, 0.3);
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(10, 193, 215, 0.4);
+}
+
+/* Hero Section */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 5% 80px;
+  overflow: hidden;
+}
+
+.hero-content {
+  max-width: 1400px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+}
+
+.hero-text {
+  animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-badge {
+  display: inline-block;
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 50px;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 30px;
+  animation: fadeInUp 1s ease-out 0.2s both;
+}
+
+.hero h1 {
+  font-size: 64px;
+  font-weight: 700;
+  color: white;
+  line-height: 1.2;
+  margin-bottom: 24px;
+  animation: fadeInUp 1s ease-out 0.4s both;
+}
+
+.hero h1 .gradient-text {
+  background: linear-gradient(135deg, #ffffff 0%, #20DE83 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-subtitle {
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.7;
+  margin-bottom: 40px;
+  font-weight: 300;
+  animation: fadeInUp 1s ease-out 0.6s both;
+}
+
+.hero-cta-group {
+  display: flex;
+  gap: 20px;
+  animation: fadeInUp 1s ease-out 0.8s both;
+}
+
+.btn-primary {
+  padding: 18px 40px;
+  background: white;
+  color: var(--nobel-navy);
+  border: none;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+}
+
+.btn-secondary {
+  padding: 18px 40px;
+  background: transparent;
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+  backdrop-filter: blur(10px);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: white;
+}
+
+/* Mockup showcase */
+.hero-mockup {
+  position: relative;
+  animation: fadeInRight 1s ease-out 0.5s both;
+}
+
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translateX(50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.mockup-container {
+  position: relative;
+  width: 100%;
+  perspective: 1000px;
+}
+
+.mockup-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: float-mockup 6s ease-in-out infinite;
+}
+
+@keyframes float-mockup {
+  0%, 100% { transform: translateY(0) rotateY(0deg); }
+  50% { transform: translateY(-20px) rotateY(5deg); }
+}
+
+.mockup-header {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.mockup-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.dot-red { background: #ff5f57; }
+.dot-yellow { background: #ffbd2e; }
+.dot-green { background: #28ca42; }
+
+.mockup-content {
+  background: var(--light-bg);
+  border-radius: 16px;
+  padding: 30px;
+  min-height: 400px;
+}
+
+.mockup-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 20px;
+}
+
+.mockup-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.stat-card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.stat-value {
+  font-size: 32px;
+  font-weight: 700;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.stat-label {
+  font-size: 14px;
+  color: var(--text-gray);
+  margin-top: 8px;
+}
+
+/* Features Section */
+.features {
+  padding: 120px 5%;
+  background: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.features::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(10, 193, 215, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.section-header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 80px;
+}
+
+.section-badge {
+  display: inline-block;
+  padding: 8px 20px;
+  background: rgba(10, 193, 215, 0.1);
+  color: var(--nobel-cyan);
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.section-title {
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.section-subtitle {
+  font-size: 18px;
+  color: var(--text-gray);
+  line-height: 1.7;
+}
+
+.features-grid {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+.feature-card {
+  background: white;
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--gradient-primary);
+  transform: scaleX(0);
+  transition: transform 0.4s;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+.feature-card:hover::before {
+  transform: scaleX(1);
+}
+
+.feature-icon {
+  width: 70px;
+  height: 70px;
+  background: var(--gradient-primary);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  font-size: 32px;
+  box-shadow: 0 8px 20px rgba(10, 193, 215, 0.3);
+}
+
+.feature-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 16px;
+}
+
+.feature-description {
+  font-size: 15px;
+  color: var(--text-gray);
+  line-height: 1.7;
+}
+
+/* Tool Showcase Section */
+.tool-showcase {
+  padding: 120px 5%;
+  background: linear-gradient(180deg, white 0%, #f8fafb 100%);
+}
+
+.tool-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.tool-image-container {
+  position: relative;
+}
+
+.tool-preview {
+  width: 100%;
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  animation: float-tool 8s ease-in-out infinite;
+}
+
+@keyframes float-tool {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+.tool-text h2 {
+  font-size: 42px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 24px;
+  line-height: 1.3;
+}
+
+.tool-features {
+  list-style: none;
+  margin: 40px 0;
+}
+
+.tool-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 24px;
+  font-size: 16px;
+  color: var(--text-gray);
+}
+
+.check-icon {
+  width: 24px;
+  height: 24px;
+  background: var(--gradient-primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-shrink: 0;
+  font-size: 14px;
+}
+
+/* AI Section */
+.ai-section {
+  padding: 120px 5%;
+  background: var(--nobel-navy);
+  position: relative;
+  overflow: hidden;
+}
+
+.ai-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 20% 50%, rgba(10, 193, 215, 0.15) 0%, transparent 50%),
+              radial-gradient(circle at 80% 50%, rgba(32, 222, 131, 0.15) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.ai-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.ai-text h2 {
+  font-size: 42px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 24px;
+  line-height: 1.3;
+}
+
+.ai-text p {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.ai-visual {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+
+.ai-brain {
+  width: 100%;
+  height: 400px;
+  background: linear-gradient(135deg, rgba(10, 193, 215, 0.2) 0%, rgba(32, 222, 131, 0.2) 100%);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.ai-pulse {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 2px solid rgba(10, 193, 215, 0.5);
+  animation: ai-pulse 2s ease-in-out infinite;
+}
+
+@keyframes ai-pulse {
+  0% { transform: scale(0.8); opacity: 1; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+.ai-icon {
+  font-size: 80px;
+  color: white;
+  position: relative;
+  z-index: 2;
+}
+
+/* Pricing Section */
+.pricing {
+  padding: 120px 5%;
+  background: white;
+}
+
+.pricing-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.pricing-card {
+  background: white;
+  border-radius: 24px;
+  padding: 50px 40px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s;
+  border: 2px solid transparent;
+  position: relative;
+}
+
+.pricing-card.popular {
+  border-color: var(--nobel-cyan);
+  transform: scale(1.05);
+  box-shadow: 0 20px 60px rgba(10, 193, 215, 0.2);
+}
+
+.popular-badge {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--gradient-primary);
+  color: white;
+  padding: 8px 24px;
+  border-radius: 50px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.pricing-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+.pricing-name {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 16px;
+}
+
+.pricing-price {
+  font-size: 48px;
+  font-weight: 700;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 8px;
+}
+
+.pricing-period {
+  font-size: 16px;
+  color: var(--text-gray);
+  margin-bottom: 32px;
+}
+
+.pricing-features {
+  list-style: none;
+  margin-bottom: 40px;
+}
+
+.pricing-features li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  font-size: 15px;
+  color: var(--text-dark);
+}
+
+.pricing-features .check {
+  color: var(--nobel-green);
+  font-size: 18px;
+}
+
+.pricing-button {
+  width: 100%;
+  padding: 16px;
+  background: var(--gradient-primary);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.pricing-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(10, 193, 215, 0.3);
+}
+
+/* About Section */
+.about {
+  padding: 120px 5%;
+  background: linear-gradient(180deg, white 0%, #f8fafb 100%);
+}
+
+.about-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.about-images {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.about-avatar {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #0AC1D7 0%, #20DE83 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 48px;
+  font-weight: 700;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  animation: float-avatar 6s ease-in-out infinite;
+}
+
+@keyframes float-avatar {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+.about-avatar:nth-child(2) {
+  animation-delay: 1s;
+  background: linear-gradient(135deg, #14264C 0%, #0AC1D7 100%);
+}
+
+.about-avatar:nth-child(3) {
+  animation-delay: 2s;
+  background: linear-gradient(135deg, #20DE83 0%, #14264C 100%);
+}
+
+.about-avatar:nth-child(4) {
+  animation-delay: 3s;
+  background: linear-gradient(135deg, #0AC1D7 0%, #14264C 100%);
+}
+
+.about-text h2 {
+  font-size: 42px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 24px;
+  line-height: 1.3;
+}
+
+.about-text p {
+  font-size: 16px;
+  color: var(--text-gray);
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.nobel-story {
+  background: rgba(10, 193, 215, 0.05);
+  border-left: 4px solid var(--nobel-cyan);
+  padding: 24px;
+  border-radius: 12px;
+  margin-top: 32px;
+}
+
+.nobel-story h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 12px;
+}
+
+.nobel-story p {
+  font-size: 15px;
+  color: var(--text-gray);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* CTA Section */
+.cta-section {
+  padding: 100px 5%;
+  background: var(--gradient-secondary);
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-section::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(32, 222, 131, 0.1) 0%, transparent 70%);
+  animation: rotate 20s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.cta-content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.cta-content h2 {
+  font-size: 48px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 24px;
+  line-height: 1.2;
+}
+
+.cta-content p {
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 40px;
+  line-height: 1.7;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+/* Footer */
+footer {
+  padding: 80px 5% 40px;
+  background: var(--nobel-navy);
+  color: white;
+}
+
+.footer-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 60px;
+  margin-bottom: 60px;
+}
+
+.footer-brand h3 {
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+
+.footer-brand p {
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+.footer-social {
+  display: flex;
+  gap: 16px;
+}
+
+.social-icon {
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.social-icon:hover {
+  background: var(--gradient-primary);
+  transform: translateY(-3px);
+}
+
+.footer-column h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+.footer-links {
+  list-style: none;
+}
+
+.footer-links li {
+  margin-bottom: 12px;
+}
+
+.footer-links a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: all 0.3s;
+  font-size: 14px;
+}
+
+.footer-links a:hover {
+  color: var(--nobel-cyan);
+  padding-left: 5px;
+}
+
+.footer-bottom {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding-top: 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 14px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .hero-content,
+  .tool-content,
+  .ai-content,
+  .about-content {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+
+  .features-grid,
+  .pricing-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .hero h1 {
+    font-size: 48px;
+  }
+
+  .section-title {
+    font-size: 36px;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+/* Scroll animations */
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+.slide-up {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: slideUp 0.8s ease-out forwards;
+}
+
+@keyframes slideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <nav>
+    <div class="logo-container">
+      <div class="logo-wave">
+        <svg viewBox="0 0 100 100">
+          <path d="M20,50 Q35,20 50,50 T80,50" stroke="white" stroke-width="8" fill="none" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <span class="logo-text">Nobel</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#features">Solutions</a></li>
+      <li><a href="#tools">Espace Client</a></li>
+      <li><a href="#pricing">Tarifs</a></li>
+      <li><a href="#agence">L'Agence</a></li>
+      <li><a href="#contact"><button class="cta-button">Demander un devis</button></a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- Hero Section -->
+<section class="hero" id="accueil">
+  <div class="hero-bg"></div>
+  <div class="particles">
+    <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
+    <div class="particle" style="left: 20%; animation-delay: 2s;"></div>
+    <div class="particle" style="left: 30%; animation-delay: 4s;"></div>
+    <div class="particle" style="left: 40%; animation-delay: 1s;"></div>
+    <div class="particle" style="left: 50%; animation-delay: 3s;"></div>
+    <div class="particle" style="left: 60%; animation-delay: 5s;"></div>
+    <div class="particle" style="left: 70%; animation-delay: 2s;"></div>
+    <div class="particle" style="left: 80%; animation-delay: 4s;"></div>
+    <div class="particle" style="left: 90%; animation-delay: 1s;"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-badge">🚀 Agence digitale spécialisée diagnostiqueurs</div>
+      <h1>
+        Développez votre activité avec un <span class="gradient-text">site intelligent</span>
+      </h1>
+      <p class="hero-subtitle">
+        Sites web sur-mesure + IA + Espace client intelligent. La solution complète pour générer des leads qualifiés et gérer vos diagnostics immobiliers.
+      </p>
+      <div class="hero-cta-group">
+        <button class="btn-primary">Découvrir nos solutions</button>
+        <button class="btn-secondary">Voir les tarifs</button>
+      </div>
+    </div>
+    <div class="hero-mockup">
+      <div class="mockup-container">
+        <div class="mockup-card">
+          <div class="mockup-header">
+            <div class="mockup-dot dot-red"></div>
+            <div class="mockup-dot dot-yellow"></div>
+            <div class="mockup-dot dot-green"></div>
+          </div>
+          <div class="mockup-content">
+            <div class="mockup-title">📊 Tableau de bord</div>
+            <div class="mockup-stats">
+              <div class="stat-card">
+                <div class="stat-value">+287%</div>
+                <div class="stat-label">Leads générés</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-value">45</div>
+                <div class="stat-label">Devis/mois</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-value">18</div>
+                <div class="stat-label">Diagnostics actifs</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-value">98%</div>
+                <div class="stat-label">Satisfaction client</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section class="features" id="features">
+  <div class="section-header">
+    <div class="section-badge">Solutions</div>
+    <h2 class="section-title">Un vrai outil de croissance, pas juste un site vitrine</h2>
+    <p class="section-subtitle">
+      Nous créons des sites web 100% sur-mesure avec des fonctionnalités pensées pour développer votre activité de diagnostiqueur immobilier.
+    </p>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">🎯</div>
+      <h3 class="feature-title">Site 100% sur-mesure</h3>
+      <p class="feature-description">
+        Design unique adapté à votre identité. Référencement local optimisé. Pages spécialisées par type de diagnostic.
+      </p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🤖</div>
+      <h3 class="feature-title">IA intégrée</h3>
+      <p class="feature-description">
+        Assistant intelligent pour vos clients. Réponses automatiques aux questions fréquentes. Qualification automatique des leads.
+      </p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📱</div>
+      <h3 class="feature-title">Espace client intelligent</h3>
+      <p class="feature-description">
+        Gestion des documents. Suivi des dossiers en temps réel. Communication simplifiée avec vos clients.
+      </p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📊</div>
+      <h3 class="feature-title">Gestion des leads</h3>
+      <p class="feature-description">
+        CRM intégré pour suivre vos prospects. Notifications instantanées. Statistiques de conversion détaillées.
+      </p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">⚡</div>
+      <h3 class="feature-title">Formulaire intelligent</h3>
+      <p class="feature-description">
+        Devis en 2 minutes. Qualification automatique. Interface visuelle avec cartes interactives.
+      </p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📈</div>
+      <h3 class="feature-title">SEO ultra-ciblé</h3>
+      <p class="feature-description">
+        Référencement local optimisé. Mots-clés métier maîtrisés. Position garantie sur Google.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Tool Showcase -->
+<section class="tool-showcase" id="tools">
+  <div class="tool-content">
+    <div class="tool-image-container">
+      <div class="mockup-card tool-preview">
+        <div class="mockup-header">
+          <div class="mockup-dot dot-red"></div>
+          <div class="mockup-dot dot-yellow"></div>
+          <div class="mockup-dot dot-green"></div>
+        </div>
+        <div class="mockup-content">
+          <div style="background: linear-gradient(135deg, #0AC1D7 0%, #20DE83 100%); height: 60px; border-radius: 12px; margin-bottom: 20px; display: flex; align-items: center; padding: 0 20px; color: white; font-weight: 600;">
+            📂 Mes dossiers
+          </div>
+          <div style="display: grid; gap: 12px;">
+            <div style="background: white; padding: 16px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+              <div>
+                <div style="font-weight: 600; margin-bottom: 4px;">123 Rue de Paris, Lyon</div>
+                <div style="font-size: 12px; color: #6b7280;">DPE • En cours</div>
+              </div>
+              <div style="width: 8px; height: 8px; background: #f59e0b; border-radius: 50%;"></div>
+            </div>
+            <div style="background: white; padding: 16px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+              <div>
+                <div style="font-weight: 600; margin-bottom: 4px;">45 Avenue Victor Hugo</div>
+                <div style="font-size: 12px; color: #6b7280;">Amiante • Terminé</div>
+              </div>
+              <div style="width: 8px; height: 8px; background: #10b981; border-radius: 50%;"></div>
+            </div>
+            <div style="background: white; padding: 16px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+              <div>
+                <div style="font-weight: 600; margin-bottom: 4px;">78 Boulevard Carnot</div>
+                <div style="font-size: 12px; color: #6b7280;">ERP • Planifié</div>
+              </div>
+              <div style="width: 8px; height: 8px; background: #0AC1D7; border-radius: 50%;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tool-text">
+      <div class="section-badge">Espace Client</div>
+      <h2>Un back-office professionnel pour gérer votre activité</h2>
+      <p style="font-size: 16px; color: var(--text-gray); line-height: 1.7; margin: 24px 0;">
+        Offrez à vos clients une expérience digitale moderne et simplifiez la gestion de vos dossiers avec notre espace client intelligent.
+      </p>
+      <ul class="tool-features">
+        <li>
+          <div class="check-icon">✓</div>
+          <div>
+            <strong>Échange de documents sécurisé</strong><br>
+            Upload, partage et signature électronique
+          </div>
+        </li>
+        <li>
+          <div class="check-icon">✓</div>
+          <div>
+            <strong>Suivi en temps réel</strong><br>
+            Vos clients suivent l'avancement de leurs diagnostics
+          </div>
+        </li>
+        <li>
+          <div class="check-icon">✓</div>
+          <div>
+            <strong>Gestion des leads</strong><br>
+            CRM intégré pour ne rater aucune opportunité
+          </div>
+        </li>
+        <li>
+          <div class="check-icon">✓</div>
+          <div>
+            <strong>Notifications automatiques</strong><br>
+            Alertes par email et SMS à chaque étape
+          </div>
+        </li>
+      </ul>
+      <button class="btn-primary" style="background: var(--gradient-primary); color: white;">Découvrir l'espace client</button>
+    </div>
+  </div>
+</section>
+
+<!-- AI Section -->
+<section class="ai-section">
+  <div class="ai-content">
+    <div class="ai-text">
+      <div class="section-badge" style="background: rgba(255, 255, 255, 0.2); color: white;">Intelligence Artificielle</div>
+      <h2>Assistant IA pour qualifier vos leads 24/7</h2>
+      <p>
+        Notre IA conversationnelle répond aux questions de vos visiteurs, qualifie automatiquement les demandes et transfère les leads chauds directement dans votre espace client.
+      </p>
+      <p>
+        <strong>Taux de conversion amélioré de +42%</strong> grâce à des réponses instantanées et pertinentes qui rassurent vos prospects et les guident vers la prise de rendez-vous.
+      </p>
+      <ul class="tool-features">
+        <li>
+          <div class="check-icon">✓</div>
+          <div style="color: rgba(255, 255, 255, 0.9);">Réponses instantanées aux questions fréquentes</div>
+        </li>
+        <li>
+          <div class="check-icon">✓</div>
+          <div style="color: rgba(255, 255, 255, 0.9);">Qualification intelligente des besoins</div>
+        </li>
+        <li>
+          <div class="check-icon">✓</div>
+          <div style="color: rgba(255, 255, 255, 0.9);">Création automatique de devis préliminaires</div>
+        </li>
+        <li>
+          <div class="check-icon">✓</div>
+          <div style="color: rgba(255, 255, 255, 0.9);">Disponible 24/7, même hors horaires</div>
+        </li>
+      </ul>
+    </div>
+    <div class="ai-visual">
+      <div class="ai-brain">
+        <div class="ai-pulse"></div>
+        <div class="ai-pulse" style="animation-delay: 0.7s;"></div>
+        <div class="ai-pulse" style="animation-delay: 1.4s;"></div>
+        <div class="ai-icon">🤖</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing Section -->
+<section class="pricing" id="pricing">
+  <div class="section-header">
+    <div class="section-badge">Tarifs</div>
+    <h2 class="section-title">Des forfaits mensuels adaptés à votre activité</h2>
+    <p class="section-subtitle">
+      Pas de frais cachés. Pas d'engagement. Résiliable à tout moment.
+    </p>
+  </div>
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <div class="pricing-name">Essentiel</div>
+      <div class="pricing-price">149€</div>
+      <div class="pricing-period">par mois</div>
+      <ul class="pricing-features">
+        <li><span class="check">✓</span> Site vitrine optimisé</li>
+        <li><span class="check">✓</span> 5 pages personnalisées</li>
+        <li><span class="check">✓</span> Design responsive</li>
+        <li><span class="check">✓</span> SEO de base</li>
+        <li><span class="check">✓</span> Formulaires de contact</li>
+        <li><span class="check">✓</span> Formation à la gestion</li>
+      </ul>
+      <button class="pricing-button">Choisir Essentiel</button>
+    </div>
+    
+    <div class="pricing-card popular">
+      <div class="popular-badge">Le plus populaire</div>
+      <div class="pricing-name">Performance</div>
+      <div class="pricing-price">189€</div>
+      <div class="pricing-period">par mois</div>
+      <ul class="pricing-features">
+        <li><span class="check">✓</span> Tout du pack Essentiel</li>
+        <li><span class="check">✓</span> SEO avancé local</li>
+        <li><span class="check">✓</span> 10 pages optimisées</li>
+        <li><span class="check">✓</span> Blog intégré</li>
+        <li><span class="check">✓</span> Espace client</li>
+        <li><span class="check">✓</span> Suivi mensuel 6 mois</li>
+        <li><span class="check">✓</span> Optimisations continues</li>
+      </ul>
+      <button class="pricing-button">Choisir Performance</button>
+    </div>
+    
+    <div class="pricing-card">
+      <div class="pricing-name">Premium</div>
+      <div class="pricing-price">219€</div>
+      <div class="pricing-period">par mois</div>
+      <ul class="pricing-features">
+        <li><span class="check">✓</span> Tout du pack Performance</li>
+        <li><span class="check">✓</span> Stratégie digitale complète</li>
+        <li><span class="check">✓</span> Pages illimitées</li>
+        <li><span class="check">✓</span> Assistant IA intégré</li>
+        <li><span class="check">✓</span> Google Ads setup</li>
+        <li><span class="check">✓</span> Suivi mensuel 12 mois</li>
+        <li><span class="check">✓</span> Garantie résultats</li>
+      </ul>
+      <button class="pricing-button">Choisir Premium</button>
+    </div>
+  </div>
+</section>
+
+<!-- About Section -->
+<section class="about" id="agence">
+  <div class="about-content">
+    <div class="about-images">
+      <div class="about-avatar">👨‍💼</div>
+      <div class="about-avatar">👩‍💼</div>
+      <div class="about-avatar">👨‍💻</div>
+      <div class="about-avatar">👩‍💻</div>
+    </div>
+    <div class="about-text">
+      <div class="section-badge">Qui sommes-nous ?</div>
+      <h2>Des diagnostiqueurs qui comprennent vos défis</h2>
+      <p>
+        Nous sommes une équipe de diagnostiqueurs immobiliers et de développeurs web qui ont vécu les mêmes difficultés que vous : manque de visibilité en ligne, gestion administrative chronophage, et difficulté à générer des leads qualifiés.
+      </p>
+      <p>
+        <strong>Nous avons fait nos preuves.</strong> Après avoir développé notre propre activité de diagnostic grâce au digital, nous avons décidé de mettre notre expertise au service d'autres diagnostiqueurs. Nobel est né de l'alliance entre deux expertises : le diagnostic immobilier et le développement web.
+      </p>
+      <div class="nobel-story">
+        <h3>📚 Pourquoi "Nobel" ?</h3>
+        <p>
+          Alfred Nobel, inventeur de la dynamite et créateur du Prix Nobel, symbolise l'innovation qui transforme le monde. Comme lui, nous croyons que l'alliance entre expertise métier et innovation technologique peut révolutionner une industrie. Nobel incarne notre vision : récompenser l'excellence et propulser les diagnostiqueurs vers le succès.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section" id="contact">
+  <div class="cta-content">
+    <h2>Prêt à développer votre activité ?</h2>
+    <p>
+      Rejoignez les dizaines de diagnostiqueurs qui ont déjà choisi Nobel pour générer plus de leads et automatiser leur gestion.
+    </p>
+    <div class="cta-buttons">
+      <button class="btn-primary">Demander un audit gratuit</button>
+      <button class="btn-secondary">Prendre rendez-vous</button>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-content">
+    <div class="footer-brand">
+      <h3>Nobel</h3>
+      <p>
+        L'agence digitale spécialisée dans la création de sites web pour diagnostiqueurs immobiliers. Propulsez votre activité avec nos solutions innovantes.
+      </p>
+      <div class="footer-social">
+        <a href="#" class="social-icon">📘</a>
+        <a href="#" class="social-icon">🐦</a>
+        <a href="#" class="social-icon">📷</a>
+        <a href="#" class="social-icon">💼</a>
+      </div>
+    </div>
+    <div class="footer-column">
+      <h4>Solutions</h4>
+      <ul class="footer-links">
+        <li><a href="#features">Site sur-mesure</a></li>
+        <li><a href="#tools">Espace client</a></li>
+        <li><a href="#">Assistant IA</a></li>
+        <li><a href="#">Gestion des leads</a></li>
+        <li><a href="#pricing">Tarifs</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>Agence</h4>
+      <ul class="footer-links">
+        <li><a href="#agence">Qui sommes-nous</a></li>
+        <li><a href="#">Nos réalisations</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Témoignages</a></li>
+        <li><a href="#">Carrières</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>Contact</h4>
+      <ul class="footer-links">
+        <li><a href="#">06 43 87 31 67</a></li>
+        <li><a href="#">contact@nobel.fr</a></li>
+        <li><a href="#">Demander un devis</a></li>
+        <li><a href="#">Support</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 Nobel. Tous droits réservés. | Mentions légales | Politique de confidentialité</p>
+  </div>
+</footer>
+
+<script>
+// Scroll animations
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -100px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('fade-in');
+    }
+  });
+}, observerOptions);
+
+document.querySelectorAll('.feature-card, .pricing-card, .tool-content, .ai-content, .about-content').forEach(el => {
+  observer.observe(el);
+});
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+// Generate particles dynamically
+const particlesContainer = document.querySelector('.particles');
+for (let i = 0; i < 20; i++) {
+  const particle = document.createElement('div');
+  particle.className = 'particle';
+  particle.style.left = Math.random() * 100 + '%';
+  particle.style.animationDelay = Math.random() * 15 + 's';
+  particle.style.animationDuration = (10 + Math.random() * 10) + 's';
+  particlesContainer.appendChild(particle);
+}
+</script>
+
+</body>
+</html>
